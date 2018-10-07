@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "6e68eeed-1b58-41c5-9b98-1aee03836e09",
+		"name": "Pirple - Assignment 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"item": [
+				{
+					"name": "http://localhost:3000/ping",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "67f4fdaf-eca5-4301-b101-425876eba553",
+								"exec": [
+									"// VALIDATE BODY",
+									"tests[\"Validate BODY - Body - Empty\"] = (responseBody.length === 0);",
+									"tests[\"Validate BODY - Header - Content-Type - Present\"] = postman.getResponseHeader(\"Content-Type\") !== undefined;",
+									"tests[\"Validate BODY - Header - Content-Type - JSON\"] = postman.getResponseHeader(\"Content-Type\").has('application/json');",
+									"",
+									"// VALIDATE STATUS CODE",
+									"tests[\"Validate STATUS - Code - 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/ping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hello",
+			"item": [
+				{
+					"name": "http://localhost:3000/hello",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0ce273c2-aba7-4d9b-8d48-ccb17753a9fe",
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"",
+									"// VALIDATE JSON",
+									"tests[\"Validate JSON - Body - Present\"] = ((responseBody) !== undefined && (responseBody.length > 1))",
+									"tests[\"Validate JSON - Response - Object\"] = (typeof jsonData) === 'object';",
+									"tests[\"Validate JSON - Header - Content-Type - Present\"] = postman.getResponseHeader(\"Content-Type\") !== undefined;",
+									"tests[\"Validate JSON - Header - Content-Type - JSON\"] = postman.getResponseHeader(\"Content-Type\").has('application/json');",
+									"",
+									"// VALIDATE STATUS CODE",
+									"tests[\"Validate STATUS - Code - 200\"] = responseCode.code === 200;",
+									"",
+									"// VALIDATE BODY",
+									"// message",
+									"tests[\"Validate BODY - message - Present\"] = jsonData.hasOwnProperty('message');",
+									"tests[\"Validate BODY - message - Text\"] = jsonData.message === \"👋\";",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "not found",
+			"item": [
+				{
+					"name": "http://localhost:3000/hello",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4ac4efe9-9183-4d37-aa38-8f1f04af8529",
+								"exec": [
+									"// VALIDATE BODY",
+									"tests[\"Validate BODY - Body - Empty\"] = (responseBody.length === 0);",
+									"tests[\"Validate BODY - Header - Content-Type - Present\"] = postman.getResponseHeader(\"Content-Type\") !== undefined;",
+									"tests[\"Validate BODY - Header - Content-Type - JSON\"] = postman.getResponseHeader(\"Content-Type\").has('application/json');",
+									"",
+									"// VALIDATE STATUS CODE",
+									"tests[\"Validate STATUS - Code - 404\"] = responseCode.code === 404;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "24e2e8b3-1e8c-4985-8485-d8572291f9d6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "26956773-87b9-46a2-9c44-c45e6fa3b979",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
